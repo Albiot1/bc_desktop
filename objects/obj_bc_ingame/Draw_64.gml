@@ -1,0 +1,1 @@
+draw_text(0,0,$"PR:{prevmxgui}|NW:{device_mouse_x_to_gui(0)}\nDIF:{prevmxgui-device_mouse_x_to_gui(0)}")

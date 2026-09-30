@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"bc_bake_fixed_size",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"bc_bake_fixed_size",
+  "parent":{
+    "name":"BC_SYSTEMS",
+    "path":"folders/BC_SYSTEMS.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

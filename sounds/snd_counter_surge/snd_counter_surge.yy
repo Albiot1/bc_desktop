@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"snd_counter_surge",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":1.0419048,
+  "exportDir":"",
+  "name":"snd_counter_surge",
+  "parent":{
+    "name":"effects_and_abilties",
+    "path":"folders/Sounds/effects_and_abilties.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_counter_surge.ogg",
+  "volume":1.0,
+}

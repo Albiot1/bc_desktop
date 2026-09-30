@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"snd_barrier_breake",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":2.1249886,
+  "exportDir":"",
+  "name":"snd_barrier_breake",
+  "parent":{
+    "name":"effects_and_abilties",
+    "path":"folders/Sounds/effects_and_abilties.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_barrier_breake.ogg",
+  "volume":0.5,
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_unit_step",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_unit_step",
+  "parent":{
+    "name":"units",
+    "path":"folders/scripts/units.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

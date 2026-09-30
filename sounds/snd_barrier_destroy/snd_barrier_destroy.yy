@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"snd_barrier_destroy",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":2.0624943,
+  "exportDir":"",
+  "name":"snd_barrier_destroy",
+  "parent":{
+    "name":"effects_and_abilties",
+    "path":"folders/Sounds/effects_and_abilties.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_barrier_destroy.ogg",
+  "volume":1.0,
+}

@@ -1,0 +1,26 @@
+{
+  "$GMSound":"v2",
+  "%Name":"snd_shield_attacked",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "channelFormat":0,
+  "compression":0,
+  "compressionQuality":4,
+  "conversionMode":0,
+  "duration":0.8109977,
+  "exportDir":"",
+  "name":"snd_shield_attacked",
+  "parent":{
+    "name":"effects_and_abilties",
+    "path":"folders/Sounds/effects_and_abilties.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":44100,
+  "soundFile":"snd_shield_attacked.ogg",
+  "volume":0.5,
+}

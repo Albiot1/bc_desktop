@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"bc_runtime",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"bc_runtime",
+  "parent":{
+    "name":"BC_SYSTEMS",
+    "path":"folders/BC_SYSTEMS.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

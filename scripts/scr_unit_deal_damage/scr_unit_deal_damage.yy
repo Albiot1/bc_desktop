@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_unit_deal_damage",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_unit_deal_damage",
+  "parent":{
+    "name":"units",
+    "path":"folders/scripts/units.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

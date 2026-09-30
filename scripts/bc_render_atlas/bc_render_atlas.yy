@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"bc_render_atlas",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"bc_render_atlas",
+  "parent":{
+    "name":"BC_SYSTEMS",
+    "path":"folders/BC_SYSTEMS.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

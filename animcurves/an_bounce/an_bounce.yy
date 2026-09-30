@@ -1,0 +1,25 @@
+{
+  "$GMAnimCurve":"",
+  "%Name":"an_bounce",
+  "channels":[
+    {"$GMAnimCurveChannel":"","%Name":"curve1","colour":4290799884,"name":"curve1","points":[
+        {"th0":-0.25,"th1":0.059045546,"tv0":0.0,"tv1":0.22781266,"x":0.0,"y":0.0,},
+        {"th0":-0.074749514,"th1":0.07117115,"tv0":0.02646169,"tv1":0.010680139,"x":0.23473282,"y":0.5821529,},
+        {"th0":-0.06565407,"th1":0.067127556,"tv0":0.4294016,"tv1":0.22512865,"x":0.45877862,"y":0.006644519,},
+        {"th0":-0.07885504,"th1":0.052648365,"tv0":0.21267605,"tv1":0.08826238,"x":0.8185115,"y":0.00933996,},
+        {"th0":-0.024268866,"th1":0.25,"tv0":0.026954234,"tv1":0.0,"x":1.0,"y":0.0,},
+      ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
+    {"$GMAnimCurveChannel":"","%Name":"curve2","colour":4281083598,"name":"curve2","points":[
+        {"th0":-0.1,"th1":0.0,"tv0":0.0,"tv1":0.0,"x":0.0,"y":0.0,},
+        {"th0":-0.8,"th1":0.1,"tv0":0.0,"tv1":0.0,"x":1.0,"y":1.0,},
+      ],"resourceType":"GMAnimCurveChannel","resourceVersion":"2.0","visible":true,},
+  ],
+  "function":2,
+  "name":"an_bounce",
+  "parent":{
+    "name":"Animcurves",
+    "path":"folders/Animcurves.yy",
+  },
+  "resourceType":"GMAnimCurve",
+  "resourceVersion":"2.0",
+}
