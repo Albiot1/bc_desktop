@@ -605,9 +605,9 @@ function unit(_unitid,_unitform,_type = UNIT_TYPE.CAT,_anim_multi = 0,_burrow = 
         return self
     }
 
-    static AddSurvive = function(_chance){
+    static AddSurvive = function(_chance,_health_percent = 0){
         abilities |= U_ABILITIES.SURVIVE
-        abilities_data.survive = { chance:_chance }
+        abilities_data.survive = { chance:_chance, percent:_health_percent }
         
         return self
     }

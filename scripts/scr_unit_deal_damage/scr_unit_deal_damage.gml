@@ -782,7 +782,14 @@ function scr_unit_deal_damage(_id,_dmg,_dmgtype = DAMAGE_TYPE.NORMAL){
         
         if _id.abilities & U_ABILITIES.SURVIVE > 0 and !_revived{
             if irandom(100) <= _id.abilities_data.survive.chance{
-                _id.life = 1
+                
+                if _id.abilities_data.survive.percent<=0{
+                    _id.life = 1
+                }
+                else{
+                    _id.life = _id.baselife * _id.abilities_data.survive.percent
+                }
+                
                 _id.abilities &= ~U_ABILITIES.SURVIVE
                 _id.effects_active |= U_ABILITIES.SURVIVE
                 
@@ -796,7 +803,7 @@ function scr_unit_deal_damage(_id,_dmg,_dmgtype = DAMAGE_TYPE.NORMAL){
         
         if _iszombie and _zkill and _id.zkilled{
             var _atk = instance_create_depth(_atkx,_atky,depth,obj_attack)
-            _atk.sprite_index = spr_zombie_kill
+            _atk.sprite_index = spr_zombie_kill_effect
             _atk.image_xscale = _side*0.5
             if global.audio
                 audio_play_sound(snd_zombie_kill,0,0)

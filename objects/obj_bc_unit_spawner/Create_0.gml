@@ -1,7 +1,7 @@
 
 function spawn_unit(_x,_type,_hp_multi = 1,_atk_multi = 1){
 
-    with instance_create_depth(_x,720,depth,obj_bc_unit){
+    with instance_create_depth(_x,SPAWN_Y,depth,obj_bc_unit){
         
         anim_idle = _type.idle_anim
         anim_move = _type.move_anim

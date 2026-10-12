@@ -3,8 +3,6 @@
   "%Name":"obj_bc_nyankocastle",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"obj_bc_nyankocastle",
@@ -35,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_nyanko_castle_bottom",
-    "path":"sprites/spr_nyanko_castle_bottom/spr_nyanko_castle_bottom.yy",
+    "name":"spr_enemy_castle12",
+    "path":"sprites/spr_enemy_castle12/spr_enemy_castle12.yy",
   },
   "spriteMaskId":null,
   "visible":true,

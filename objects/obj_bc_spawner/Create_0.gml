@@ -12,7 +12,7 @@ function spawn_enemy(_x,_type,_hp_multi = 1,_atk_multi = 1,_is_boss = false){
 
     if _is_boss{
         _x = obj_bc_enemycastle.bbox_right+5
-        with instance_create_depth(_x, 720, depth, obj_effect_anim){
+        with instance_create_depth(_x, SPAWN_Y, depth, obj_effect_anim){
             data = global.boss_shockwave_animation
         }
         if global.audio

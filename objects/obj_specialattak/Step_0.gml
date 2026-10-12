@@ -6,10 +6,10 @@ if time<0
 switch(atktype){
     case U_SPEC_ATTACKS.WAVE:
         if time==3{
-            var _spr = spr_wave
+            var _spr = spr_attack_wave
             var _range = 400/5
             if side == 1{
-                _spr = spr_wave_enemy
+                _spr = spr_attack_wave_enemy
                 _range = 500/5
             }
             
@@ -30,10 +30,10 @@ switch(atktype){
     break;
     case U_SPEC_ATTACKS.MINI_WAVE:
         if time==1{
-            var _spr = spr_mini_wave
+            var _spr = spr_attack_mini_wave
             var _range = 400/5
             if side == 1{
-                _spr = spr_mini_wave_enemy
+                _spr = spr_attack_mini_wave_enemy
                 _range = 500/5
             }
             
@@ -65,15 +65,15 @@ switch(atktype){
             
             if side == 1{
                 if atktype == U_SPEC_ATTACKS.SURGE
-                    sprite_index = spr_surge_start_enemy
+                    sprite_index = spr_attack_surge_start_enemy
                 else
-                    sprite_index = spr_minisurge_start_enemy
+                    sprite_index = spr_attack_minisurge_start_enemy
             }
             else{
                 if atktype == U_SPEC_ATTACKS.SURGE
-                    sprite_index = spr_surge_start
+                    sprite_index = spr_attack_surge_start
                 else
-                    sprite_index = spr_minisurge_start
+                    sprite_index = spr_attack_minisurge_start
             }
             
             surge_audio = noone
@@ -92,15 +92,15 @@ switch(atktype){
             
             if side == 1{
                 if atktype == U_SPEC_ATTACKS.SURGE
-                    sprite_index = spr_surge_loop_enemy
+                    sprite_index = spr_attack_surge_loop_enemy
                 else
-                    sprite_index = spr_minisurge_loop_enemy
+                    sprite_index = spr_attack_minisurge_loop_enemy
             }
             else{
                 if atktype == U_SPEC_ATTACKS.SURGE
-                    sprite_index = spr_surge_loop
+                    sprite_index = spr_attack_surge_loop
                 else
-                    sprite_index = spr_minisurge_loop
+                    sprite_index = spr_attack_minisurge_loop
             }
             
         }
@@ -120,15 +120,15 @@ switch(atktype){
                 image_index = 0
                 if side == 1{
                     if atktype == U_SPEC_ATTACKS.SURGE
-                        sprite_index = spr_surge_end_enemy
+                        sprite_index = spr_attack_surge_end_enemy
                     else
-                        sprite_index = spr_minisurge_end_enemy
+                        sprite_index = spr_attack_minisurge_end_enemy
                 }
                 else{
                     if atktype == U_SPEC_ATTACKS.SURGE
-                        sprite_index = spr_surge_end
+                        sprite_index = spr_attack_surge_end
                     else
-                        sprite_index = spr_minisurge_end
+                        sprite_index = spr_attack_minisurge_end
                 }
             }
         }
@@ -153,10 +153,10 @@ switch(atktype){
             sound = 0
             
             if side == 1{
-                sprite_index = spr_explosion_start_enemy
+                sprite_index = spr_attack_explosion_start_enemy
             }
             else{
-                sprite_index = spr_explosion_start
+                sprite_index = spr_attack_explosion_start
             }
         }
         
@@ -164,11 +164,11 @@ switch(atktype){
             changed = true
             if side == 1{
                 image_index = 0
-                sprite_index = spr_explosion_enemy
+                sprite_index = spr_attack_explosion_enemy
             }
             else{
                 image_index = 0
-                sprite_index = spr_explosion
+                sprite_index = spr_attack_explosion
             }
         }
         

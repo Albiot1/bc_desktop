@@ -24,7 +24,7 @@ function scr_base_deal_damage(_id,_dmg){
         _side = 1
     }
     
-    var _atkx = _id.x+(16+irandom_range(-4,4))*_side
+    var _atkx = irandom_range(_id.bbox_left+8,_id.bbox_right-8)//_id.x+(16+irandom_range(-4,4))*_side
     var _atky = irandom_range(_id.bbox_top+8,_id.bbox_bottom-8)
     
     if is_crit and _apply_effects{

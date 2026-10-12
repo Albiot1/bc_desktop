@@ -25,7 +25,7 @@
   "nineSlice":{
     "$GMNineSliceData":"",
     "bottom":17,
-    "enabled":false,
+    "enabled":true,
     "guideColour":[4294902015,4294902015,4294902015,4294902015,],
     "highlightColour":1728023040,
     "highlightStyle":0,
@@ -44,8 +44,8 @@
   },
   "origin":0,
   "parent":{
-    "name":"ui",
-    "path":"folders/sprites/ui.yy",
+    "name":"interface",
+    "path":"folders/sprites/interface.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
