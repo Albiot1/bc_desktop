@@ -1,6 +1,8 @@
 //if DEBUG_BOXES
 //    draw_self()
 
+var _my_y = y + randy
+
 if !surface_exists(atlas){
     stats_ref.atlas_surface = surface_create(atlas_size[0],atlas_size[1])
     atlas = stats_ref.atlas_surface
@@ -13,7 +15,7 @@ if state == UNIT_STATE.ZOMBIE_DEAD or state == UNIT_STATE.ZOMBIE_DEAD_KNOCKBACK 
 
 if _drawme and surface_exists(atlas){
     
-bc_draw_baked_frame_atlas_new_fixed(current_anim,frame,atlas,x,y,0.5*scale,image_alpha)
+    bc_draw_baked_frame_atlas_new_fixed(current_anim,frame,atlas,x,_my_y,0.5*scale,image_alpha)
     
 }
 
@@ -63,14 +65,14 @@ if DEBUG_BOXES{
 }
 
 if state == UNIT_STATE.WARP{
-    /*
+    
 	if warp.state == 0{
-		draw_sprite_ext(spr_warp_in,warp.animframe,x,lastposy-650,_s,1,0,c_white,1)
+		draw_sprite_ext(spr_warp_in,warp.animframe,x,lastposy+randy-650,_s,1,0,c_white,1)
 	}
 	else if warp.state == 2{
-		draw_sprite_ext(spr_warp_out,warp.animframe,x,lastposy-650,_s,1,0,c_white,1)
+		draw_sprite_ext(spr_warp_out,warp.animframe,x,lastposy+randy-650,_s,1,0,c_white,1)
 	}
-    */
+    
 }
 
 if state == UNIT_STATE.WARP or state == UNIT_STATE.ZOMBIE_DEAD
@@ -80,10 +82,10 @@ if state == UNIT_STATE.WARP or state == UNIT_STATE.ZOMBIE_DEAD
 _s*=-1
 
 var _effx = x
-var _effy = y-height
+var _effy = y-height+randy
 
 if state == UNIT_STATE.ZOMBIE_BURROW_MOVE{
-    _effy = y
+    _effy = y+randy
 }
 
 if effects_active & U_EFFECTS.WEAKEN > 0 or effects_active & U_EFFECTS.STRENGTHEN > 0{
@@ -135,15 +137,15 @@ if effects_active & U_EFFECTS.FREEZE > 0{
 }
 
 if effects_active & SHOW_EFFECT_IMMUNITY > 0{
-	draw_sprite_ext(spr_effect_immune,immunity_frame,x,y-23,0.5*_s,0.5,0,c_white,1)	
+	draw_sprite_ext(spr_effect_immune,immunity_frame,x,_my_y-23,0.5*_s,0.5,0,c_white,1)	
 }
 
 if effects_active & SHOW_EFFECT_IMMUNITY_TO_SPECATK > 0{
-	draw_sprite_ext(spr_ability_waveimmune,immunity_specatk_frame,x,y,0.5*_s,0.5,0,c_white,1)
+	draw_sprite_ext(spr_ability_waveimmune,immunity_specatk_frame,x,_my_y,0.5*_s,0.5,0,c_white,1)
 }
 
 if effects_active & U_ABILITIES.WAVE_SHIELD > 0{
-	draw_sprite_ext(spr_waveblock,wave_shield_frame,x,y,0.5*_s,0.5,0,c_white,1)
+	draw_sprite_ext(spr_waveblock,wave_shield_frame,x,_my_y,0.5*_s,0.5,0,c_white,1)
 }
 
 if effects_active & SHOW_BARRIER_HIT > 0{
@@ -155,7 +157,7 @@ if effects_active & SHOW_BARRIER_HIT > 0{
 		case BARRIER_STATE.SHATTER: _spr = spr_barrier_shattered break;
 	}
 	
-	draw_sprite_ext(_spr,barrier_frame,x,y,0.5*-_s,0.5,0,c_white,1)
+	draw_sprite_ext(_spr,barrier_frame,x,_my_y,0.5*-_s,0.5,0,c_white,1)
 }
 
 if effects_active & SHOW_SHIELD_HIT > 0{
@@ -173,7 +175,7 @@ if effects_active & SHOW_SHIELD_HIT > 0{
 		case AKU_SHIELD_STATE.REGEN: _spr = spr_aku_shield_recovery break;
 	}
 	
-	draw_sprite_ext(_spr,shield_frame,x,y,0.5*-_s,0.5,0,c_white,1)
+	draw_sprite_ext(_spr,shield_frame,x,_my_y,0.5*-_s,0.5,0,c_white,1)
 }
 
 #endregion

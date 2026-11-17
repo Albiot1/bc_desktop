@@ -234,7 +234,7 @@ spawner = {
                 if _spawn {
                     //
                     
-                    spawn_enemy(obj_bc_enemycastle.x+60,global.enemies[$ _data.enemy],_data.hp_multi,_data.atk_multi,_data.is_boss)
+                    spawn_enemy(obj_bc_enemycastle.x+58,global.enemies[$ _data.enemy],_data.hp_multi,_data.atk_multi,_data.is_boss)
                     
                     //
                 }

@@ -66,3 +66,5 @@ knockback = {
 }
 
 enemylist = ds_list_create()
+
+randy = irandom_range(0,6)

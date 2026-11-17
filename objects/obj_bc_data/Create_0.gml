@@ -54,8 +54,6 @@ function process_sheet_surface(_sheet_path,_name = "name"){
     
     surface_reset_target()
     
-    gpu_set_tex_filter(true)
-    
     var _surf_width = surface_get_width(atlas_surface);
     var _surf_height = surface_get_height(atlas_surface);
     
@@ -138,7 +136,6 @@ function export_anim(_sheet_path,_imgcut_path,_mamodel_path,_maanim_path,_export
     
     surface_reset_target()
     
-    gpu_set_tex_filter(true)
     
     var _surf_width = surface_get_width(_atlas_surface);
     var _surf_height = surface_get_height(_atlas_surface);
@@ -173,7 +170,6 @@ function export_anim(_sheet_path,_imgcut_path,_mamodel_path,_maanim_path,_export
     
     surface_free(_atlas_surface)
     surface_free(savesurf)
-
 }
 
 /*
@@ -413,8 +409,6 @@ function unit(_unitid,_unitform,_type = UNIT_TYPE.CAT,_anim_multi = 0,_burrow = 
     
     surface_reset_target()
     
-    gpu_set_tex_filter(true)
-    
     var _surf_width = surface_get_width(atlas_surface);
     var _surf_height = surface_get_height(atlas_surface);
     
@@ -425,6 +419,7 @@ function unit(_unitid,_unitform,_type = UNIT_TYPE.CAT,_anim_multi = 0,_burrow = 
 
     surface_free(_blend_surface)
     sprite_delete(_sheet);
+    
     
     var _imgcut  = bc_load_imgcut(_imgcut_path);
     var _mamodel = bc_load_mamodel(_mamodel_path);
@@ -968,7 +963,7 @@ function unit(_unitid,_unitform,_type = UNIT_TYPE.CAT,_anim_multi = 0,_burrow = 
         return self
     }
     static SetRange = function (_value){
-        range = (_value/5)
+        range = _value/5
         return self
     }
     static SetAttackFrame = function (_value){

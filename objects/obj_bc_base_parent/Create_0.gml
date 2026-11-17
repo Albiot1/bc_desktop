@@ -25,8 +25,6 @@ gpu_set_blendmode(bm_normal)
 
 surface_reset_target()
 
-gpu_set_tex_filter(true)
-
 var _surf_width = surface_get_width(atlas_surface);
 var _surf_height = surface_get_height(atlas_surface);
 
