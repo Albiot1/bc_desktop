@@ -10,9 +10,8 @@ timer = 90
 
 function spawn_enemy(_x,_type,_hp_multi = 1,_atk_multi = 1,_is_boss = false){
 
-    if _is_boss{
-        _x = obj_bc_enemycastle.bbox_right+5
-        with instance_create_depth(_x, SPAWN_Y, depth, obj_effect_anim){
+    if _is_boss == BOSS_TYPE.BOSS_SHOCKWAVE{
+        with instance_create_depth(obj_bc_enemycastle.bbox_right+5, SPAWN_Y, depth, obj_effect_anim){
             data = global.boss_shockwave_animation
         }
         if global.audio
@@ -54,7 +53,7 @@ function spawn_enemy(_x,_type,_hp_multi = 1,_atk_multi = 1,_is_boss = false){
         
         limit = _type.limit
         
-        if _is_boss{
+        if _is_boss != BOSS_TYPE.NONE{
             limit = _x + limit
         }
         
@@ -191,6 +190,12 @@ spawner = {
     timers:[],
     spawned:[], //if it spawned once
     num:0,
+    add:function (_list){
+        array_push(list,_list)
+        array_push(timers,0)
+        array_push(spawned,0)
+        num++
+    },
     step:function(){
         for(var i = num - 1; i>=0; i--){
             var _data = list[i]
@@ -234,7 +239,7 @@ spawner = {
                 if _spawn {
                     //
                     
-                    spawn_enemy(obj_bc_enemycastle.x+58,global.enemies[$ _data.enemy],_data.hp_multi,_data.atk_multi,_data.is_boss)
+                    obj_bc_spawner.spawn_enemy(obj_bc_enemycastle.x+58,global.enemies[$ _data.enemy],_data.hp_multi,_data.atk_multi,_data.is_boss)
                     
                     //
                 }
@@ -252,3 +257,9 @@ spawner = {
     }
 }
 
+spawner.add(
+    new SpawnerList(global.enemies.doge,0,15,5)
+)
+spawner.add(
+    new SpawnerList(global.enemies.those_guys,0,0,1,BOSS_TYPE.BOSS_SHOCKWAVE).SetBaseHealth(0.1)
+)
