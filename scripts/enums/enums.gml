@@ -1,0 +1,152 @@
+enum BARRIER_STATE {
+    NONE,
+    HIT,
+    DESTROY,
+    SHATTER
+}
+
+enum AKU_SHIELD_STATE {
+    NONE,
+    HIT,
+    DESTROY,
+    PIERCE,
+    REGEN
+}
+
+enum KNOCKACK_TYPE {
+    NORMAL,
+    HEALTH,
+    BOSS
+}
+
+enum UNIT_STATE{
+    IDLE,
+    MOVE,
+    ATTACK,
+    KNOCKBACK,
+    WARP,
+    ZOMBIE_DEAD,
+    ZOMBIE_DEAD_KNOCKBACK,
+    ZOMBIE_BURROW_DOWN,
+    ZOMBIE_BURROW_MOVE,
+    ZOMBIE_BURROW_UP
+}
+
+enum ATK_TYPE{
+    SINGLE,
+    AREA,
+    LONG,
+    OMNI
+}
+
+enum UNIT_TYPE{
+    CAT,
+    DOG
+}
+
+enum U_TRAIT {
+    RED,
+    FLOATING,
+    DARK,
+    METAL,
+    ANGEL,
+    ALIEN,
+    ZOMBIE,
+    AKU,
+    RELIC,
+    TRAITLESS,
+    BASE
+}
+
+enum U_SPEC_TRAIT {
+    EVA_ANGEL,
+    WITCH,
+    COLOSSUS,
+    BEHEMOTH,
+    SAGE,
+    SUPERVILLAIN,
+}
+
+enum U_ABILITIES {
+    TARGET_ONLY = 1,
+    RESISTANT = 2,
+    INSANELY_TOUGH = 4,
+    MASSIVE_DAMAGE = 8,
+    INSANE_DAMAGE = 16,
+    BASE_DESTROYER = 32,
+    EXTRA_MONEY = 64,
+    METAL = 128,
+    SURVIVE = 256,
+    COUNTER_SURGE = 512,
+    WAVE_SHIELD = 1024,
+    CONJURE = 2048,
+    AKU_SHIELD = 4096,
+    ALN_BARRIER = 8192,
+    DEATH_SURGE = 16384,
+    STRONG_AGAINST = 32768,
+    ZOMBIE_REVIVE = 65536,
+    ZOMBIE_BURROW = 131072
+}
+
+enum U_RESISTS {
+    WEAKEN = 1,
+    FREEZE = 2,
+    SLOW = 4,
+    KNOCKBACK = 8,
+    WAVE = 16,
+    SURGE = 32,
+    EXPLOSION = 64,
+    WARP = 128,
+    CURSE = 256,
+    TOXIC = 512,
+    BOSS_WAVE = 1024
+}
+
+enum U_KILLER {
+    ZOMBIE_KILLER = 1,
+    WITCH_KILLER = 2,
+    EVA_KILLER = 4,
+    COLOSSUS_KILLER = 8,
+    CORPSE_KILLER = 16,
+    SAGE_SLAYER = 32,
+    VILLAIN_SLAYER = 64,
+    BEHEMOTH_SLAYER = 128
+}
+
+enum U_EFFECTS {
+    WEAKEN = 1,
+    FREEZE = 2,
+    SLOW = 4,
+    KNOCKBACK = 8,
+    WARP = 16,
+    CURSE = 32,
+    DODGE = 64,
+    STRENGTHEN = 128,
+    CRITICAL = 256,
+    METAL_KILLER = 512,
+    BARRIER_BREAKER = 1024,
+    SHIELD_BREAKER = 2048,
+    SAVAGE_BLOW = 4096,
+    KAMIKAZE = 8192,
+    TOXIC = 16384
+}
+
+enum DAMAGE_TYPE {
+    NORMAL,
+    WAVE,
+    SURGE,
+    EXPLOSION
+}
+
+#macro SHOW_BARRIER_HIT 4096
+#macro SHOW_SHIELD_HIT 8192
+#macro SHOW_EFFECT_IMMUNITY 16384
+#macro SHOW_EFFECT_IMMUNITY_TO_SPECATK 32768
+
+enum U_SPEC_ATTACKS {
+    MINI_WAVE = 1,
+    WAVE = 2,
+    MINI_SURGE = 4,
+    SURGE = 8,
+    EXPLOSION = 16
+}

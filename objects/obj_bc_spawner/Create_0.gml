@@ -18,7 +18,7 @@ function spawn_enemy(_x,_type,_hp_multi = 1,_atk_multi = 1,_is_boss = false){
             audio_play_sound(snd_boss_wave,1,0)
     }
     
-    with instance_create_depth(_x,720,depth,obj_bc_enemy){
+    with instance_create_depth(_x,SPAWN_Y,depth,obj_bc_enemy){
         
         anim_idle = _type.idle_anim
         anim_move = _type.move_anim
@@ -201,65 +201,43 @@ spawner = {
             var _data = list[i]
             var _spawn = false
             
-            if global.enemy_base_life_percent <= _data.base_health_amount{
-                
-                timers[i]+=0.5
-                
-                if _data.kills_to_spawn != 0{
-                    if _data.kills_type == KILLS_TYPE.ALL and global.units_killed+global.enemies_killed < _data.kills_to_spawn{
-                        continue
-                    }
-                    else if _data.kills_type == KILLS_TYPE.UNIT and global.units_killed < _data.kills_to_spawn{
-                        continue
-                    }
-                    else if _data.kills_type == KILLS_TYPE.ENEMY and global.enemies_killed < _data.kills_to_spawn{
-                        continue
-                    }
-                }
-                
-                if limit > 0 and instance_number(obj_bc_enemy) >= limit{
-                    continue
-                }
-                
-                if spawned[i] == 0{
-                    if timers[i]>=_data.spawn_start_time{
-                        _spawn = true
-                        spawned[i] = 1
-                        timers[i] = 0
-                    }
-                }
-                else{
-                    if timers[i]>=_data.respawn_time{
-                        _spawn = true
-                        timers[i] = 0
-                        spawned[i] ++
-                    }
-                }
-                
-                if _spawn {
-                    //
-                    
-                    obj_bc_spawner.spawn_enemy(obj_bc_enemycastle.x+58,global.enemies[$ _data.enemy],_data.hp_multi,_data.atk_multi,_data.is_boss)
-                    
-                    //
-                }
-                
+            if global.enemy_base_life_percent > _data.base_health_amount continue
+            
+            if _data.kills_to_spawn != 0{
+                if _data.kills_type == KILLS_TYPE.ALL and global.units_killed+global.enemies_killed < _data.kills_to_spawn continue
+                if _data.kills_type == KILLS_TYPE.UNIT and global.units_killed < _data.kills_to_spawn continue
+                if _data.kills_type == KILLS_TYPE.ENEMY and global.enemies_killed < _data.kills_to_spawn continue
+            }
+            
+            if limit > 0 and instance_number(obj_bc_enemy) >= limit continue
+            
+            timers[i] += 0.5
+            
+            var _wait = (spawned[i] == 0) ? _data.spawn_start_time : _data.respawn_time
+            
+            if timers[i] >= _wait{
+                _spawn = true
+                timers[i] = 0
+                spawned[i]++
+                show_message($"{_data}")
+            }
+            
+            if _spawn {
+                obj_bc_spawner.spawn_enemy(obj_bc_enemycastle.x+58,global.enemies[$ _data.enemy],_data.hp_multi,_data.atk_multi,_data.is_boss)
                 if spawned[i] >= _data.spawn_amount{
                     array_delete(list,i,1)
                     array_delete(timers,i,1)
                     array_delete(spawned,i,1)
                     num--
                 }
-                
             }
-            
         }
     }
 }
 
 spawner.add(
-    new SpawnerList(global.enemies.doge,0,15,5)
+    new SpawnerList("doge",0,90,5)
 )
 spawner.add(
-    new SpawnerList(global.enemies.those_guys,0,0,1,BOSS_TYPE.BOSS_SHOCKWAVE).SetBaseHealth(0.1)
+    new SpawnerList("those_guys",0,0,1,BOSS_TYPE.BOSS_SHOCKWAVE).SetBaseHealth(0.1)
 )

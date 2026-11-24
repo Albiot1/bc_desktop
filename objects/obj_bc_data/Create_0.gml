@@ -1,21 +1,7 @@
-global.max_x = [ 32,1280-32 ]
 #macro DEBUG_BOXES false 
 #macro debug:DEBUG_BOXES true 
 
-enum BARRIER_STATE {
-    NONE,
-    HIT,
-    DESTROY,
-    SHATTER
-}
 
-enum AKU_SHIELD_STATE {
-    NONE,
-    HIT,
-    DESTROY,
-    PIERCE,
-    REGEN
-}
 
 function process_sheet_surface(_sheet_path,_name = "name"){
     var _scale = 2
@@ -197,146 +183,53 @@ global.warp_out = {
 }
 //
 
-enum KNOCKACK_TYPE {
-    NORMAL,
-    HEALTH,
-    BOSS
+
+function unitGetData(_unitid,_unitform,_type = UNIT_TYPE.CAT){
+    
+    type = _type
+    
+    var _rid = string(_unitid)
+    while (string_length(_rid)<3) {
+        _rid = "0"+_rid
+    }
+    
+    var _ftypes = ["f","c","s","u"]
+    
+    
+    if _type == UNIT_TYPE.CAT{
+        var _path = "E:\\unit\\" + _rid + "\\" + _ftypes[_unitform] + "\\"
+        var _main_name = _rid+"_"+_ftypes[_unitform]
+    }
+    else {
+        var _path = "E:\\enemy\\" + _rid + "\\"
+        var _main_name = _rid+"_e"
+    }
+
+    var _imgcut_path = _path + _main_name + ".imgcut"
+    var _mamodel_path = _path + _main_name + ".mamodel"
+    var _maanim_idle_path = _path + _main_name + "01.maanim"
+
+    var _imgcut  = bc_load_imgcut(_imgcut_path);
+    var _mamodel = bc_load_mamodel(_mamodel_path);
+    var _maanim_idle = bc_load_maanim(_maanim_idle_path)
+
+    height = bc_compute_bounds(_mamodel,_maanim_idle,_imgcut,0.5).height
+    
+    if _type == UNIT_TYPE.DOG{
+        limit = ((_mamodel.confs[0][2] - _mamodel.parts[0][6]) * _mamodel.parts[0][8]) / _mamodel.ints[0]
+    }
+    else {
+    	limit = ((_mamodel.confs[1][2] - _mamodel.parts[0][6]) * _mamodel.parts[0][8]) / _mamodel.ints[0]
+    }
+    limit = floor( limit * 0.5 )
+    
+    show_debug_message(
+        $"{_rid}\nLIMIT : {limit}\nHEIGHT : {round(height)}\n=============="    
+    )
+    
 }
 
-enum UNIT_STATE{
-    IDLE,
-    MOVE,
-    ATTACK,
-    KNOCKBACK,
-    WARP,
-    ZOMBIE_DEAD,
-    ZOMBIE_DEAD_KNOCKBACK,
-    ZOMBIE_BURROW_DOWN,
-    ZOMBIE_BURROW_MOVE,
-    ZOMBIE_BURROW_UP
-}
-
-enum ATK_TYPE{
-    SINGLE,
-    AREA,
-    LONG,
-    OMNI
-}
-
-enum UNIT_TYPE{
-    CAT,
-    DOG
-}
-
-enum U_TRAIT {
-    RED,
-    FLOATING,
-    DARK,
-    METAL,
-    ANGEL,
-    ALIEN,
-    ZOMBIE,
-    AKU,
-    RELIC,
-    TRAITLESS,
-    BASE
-}
-
-enum U_SPEC_TRAIT {
-    EVA_ANGEL,
-    WITCH,
-    COLOSSUS,
-    BEHEMOTH,
-    SAGE,
-    SUPERVILLAIN,
-}
-
-enum U_ABILITIES {
-    TARGET_ONLY = 1,
-    RESISTANT = 2,
-    INSANELY_TOUGH = 4,
-    MASSIVE_DAMAGE = 8,
-    INSANE_DAMAGE = 16,
-    BASE_DESTROYER = 32,
-    EXTRA_MONEY = 64,
-    METAL = 128,
-    SURVIVE = 256,
-    COUNTER_SURGE = 512,
-    WAVE_SHIELD = 1024,
-    CONJURE = 2048,
-    AKU_SHIELD = 4096,
-    ALN_BARRIER = 8192,
-    DEATH_SURGE = 16384,
-    STRONG_AGAINST = 32768,
-    ZOMBIE_REVIVE = 65536,
-    ZOMBIE_BURROW = 131072
-}
-
-enum U_RESISTS {
-    WEAKEN = 1,
-    FREEZE = 2,
-    SLOW = 4,
-    KNOCKBACK = 8,
-    WAVE = 16,
-    SURGE = 32,
-    EXPLOSION = 64,
-    WARP = 128,
-    CURSE = 256,
-    TOXIC = 512,
-    BOSS_WAVE = 1024
-}
-
-enum U_KILLER {
-    ZOMBIE_KILLER = 1,
-    WITCH_KILLER = 2,
-    EVA_KILLER = 4,
-    COLOSSUS_KILLER = 8,
-    CORPSE_KILLER = 16,
-    SAGE_SLAYER = 32,
-    VILLAIN_SLAYER = 64,
-    BEHEMOTH_SLAYER = 128
-}
-
-enum U_EFFECTS {
-    WEAKEN = 1,
-    FREEZE = 2,
-    SLOW = 4,
-    KNOCKBACK = 8,
-    WARP = 16,
-    CURSE = 32,
-    DODGE = 64,
-    STRENGTHEN = 128,
-    CRITICAL = 256,
-    METAL_KILLER = 512,
-    BARRIER_BREAKER = 1024,
-    SHIELD_BREAKER = 2048,
-    SAVAGE_BLOW = 4096,
-    KAMIKAZE = 8192,
-    TOXIC = 16384
-}
-
-enum DAMAGE_TYPE {
-    NORMAL,
-    WAVE,
-    SURGE,
-    EXPLOSION
-}
-
-#macro SHOW_BARRIER_HIT 4096
-#macro SHOW_SHIELD_HIT 8192
-#macro SHOW_EFFECT_IMMUNITY 16384
-#macro SHOW_EFFECT_IMMUNITY_TO_SPECATK 32768
-
-enum U_SPEC_ATTACKS {
-    MINI_WAVE = 1,
-    WAVE = 2,
-    MINI_SURGE = 4,
-    SURGE = 8,
-    EXPLOSION = 16
-}
-
-
-
+unitGetData(0,0)
 
 function unit(_unitid,_unitform,_type = UNIT_TYPE.CAT,_anim_multi = 0,_burrow = false) constructor 
 {
@@ -429,22 +322,18 @@ function unit(_unitid,_unitform,_type = UNIT_TYPE.CAT,_anim_multi = 0,_burrow = 
     var _maanim_kb = bc_load_maanim(_maanim_knoc_path)
     
     
-    height = bc_compute_bounds(_mamodel,_maanim_idle,_imgcut,0.5).height
+    height = 0
+    limit = 0
     
     idle_anim = bc_bake_animation_fixed(_mamodel,_maanim_idle,_imgcut,atlas_surface,,_anim_multi)
     move_anim = bc_bake_animation_fixed(_mamodel,_maanim_move,_imgcut,atlas_surface,,_anim_multi)
     atk_anim = bc_bake_animation_fixed(_mamodel,_maanim_attk,_imgcut,atlas_surface)
     kb_anim = bc_bake_animation_fixed(_mamodel,_maanim_kb,_imgcut,atlas_surface)
     
-    if _type == UNIT_TYPE.DOG{
-        limit = ((_mamodel.confs[0][2] - _mamodel.parts[0][6]) * _mamodel.parts[0][8]) / _mamodel.ints[0]
-    }
-    else {
-    	limit = ((_mamodel.confs[1][2] - _mamodel.parts[0][6]) * _mamodel.parts[0][8]) / _mamodel.ints[0]
+    if _type == UNIT_TYPE.CAT{
         price = 0 //for sending
         cooldown = 0 //for sending
     }
-    limit = floor( limit * 0.5 )
     
     if _burrow{
         var _maanim_burrow_up = bc_load_maanim(_maanim_burrow_up_path)
@@ -490,6 +379,18 @@ function unit(_unitid,_unitform,_type = UNIT_TYPE.CAT,_anim_multi = 0,_burrow = 
     
     static SetCooldown = function(_amount){
         cooldown = _amount
+        
+        return self
+    }
+    
+    static SetHeight = function (_amount){
+        height = _amount
+        
+        return self
+    }
+    
+    static SetMinimumPosition = function (_amount){
+        limit = _amount
         
         return self
     }
@@ -991,7 +892,7 @@ global.enemies = {
 #region UNITS
 var _cat = new unit(0,0)
                 _cat.SetHp(100).SetKnockback(3)
-                _cat.SetDmg(8).SetRange(140)
+                _cat.SetDmg(89).SetRange(140)
                 _cat.SetAttackFrame(8).SetAtkSpd(30)
                 _cat.SetSpeed(10)
 
