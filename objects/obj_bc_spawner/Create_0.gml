@@ -1,18 +1,24 @@
-/*
-var _disp_w = display_get_width()
-var _disp_h = display_get_height()
-camera_set_view_size(view_camera[0],_disp_w,_disp_h)
-view_set_wport(view_current,_disp_w)
-view_set_hport(view_current,_disp_h)
-*/
-
-timer = 90
-
 function spawn_enemy(_x,_type,_hp_multi = 1,_atk_multi = 1,_is_boss = false){
 
     if _is_boss == BOSS_TYPE.BOSS_SHOCKWAVE{
         with instance_create_depth(obj_bc_enemycastle.bbox_right+5, SPAWN_Y, depth, obj_effect_anim){
             data = global.boss_shockwave_animation
+        }
+        with obj_bc_unit{
+            if state == UNIT_STATE.ATTACK or state == UNIT_STATE.IDLE or state == UNIT_STATE.MOVE{
+                state = UNIT_STATE.KNOCKBACK
+                current_anim = anim_kb
+                frame = 0
+                
+                knockback.type = KNOCKACK_TYPE.BOSS
+                knockback.distance = 735 / 5
+                knockback.time = 0
+                knockback.maxtime = 24
+                lastpos = x
+                
+                image_xscale = 0
+                image_yscale = 0
+            }
         }
         if global.audio
             audio_play_sound(snd_boss_wave,1,0)
@@ -147,7 +153,9 @@ enum KILLS_TYPE {
     ALL,
     UNIT,
     ENEMY
-} 
+}
+
+global.boss_spawned = true
 
 SpawnerList = function(_enemy,_start_spawn,_respawn_time,_amount = 1,_boss = BOSS_TYPE.NONE) constructor{
     atk_multi = 1
@@ -199,7 +207,6 @@ spawner = {
     step:function(){
         for(var i = num - 1; i>=0; i--){
             var _data = list[i]
-            var _spawn = false
             
             if global.enemy_base_life_percent > _data.base_health_amount continue
             
@@ -211,33 +218,31 @@ spawner = {
             
             if limit > 0 and instance_number(obj_bc_enemy) >= limit continue
             
-            timers[i] += 0.5
-            
-            var _wait = (spawned[i] == 0) ? _data.spawn_start_time : _data.respawn_time
+            var _wait = (spawned[i] < 1) ? _data.spawn_start_time : _data.respawn_time
             
             if timers[i] >= _wait{
-                _spawn = true
                 timers[i] = 0
                 spawned[i]++
-                show_message($"{_data}")
-            }
-            
-            if _spawn {
+                
                 obj_bc_spawner.spawn_enemy(obj_bc_enemycastle.x+58,global.enemies[$ _data.enemy],_data.hp_multi,_data.atk_multi,_data.is_boss)
                 if spawned[i] >= _data.spawn_amount{
                     array_delete(list,i,1)
                     array_delete(timers,i,1)
                     array_delete(spawned,i,1)
                     num--
+                    
+                    continue
                 }
             }
+            
+            timers[i] += 0.5
         }
     }
 }
 
 spawner.add(
-    new SpawnerList("doge",0,90,5)
+    new SpawnerList("doge",32,90,5)
 )
 spawner.add(
-    new SpawnerList("those_guys",0,0,1,BOSS_TYPE.BOSS_SHOCKWAVE).SetBaseHealth(0.1)
+    new SpawnerList("those_guys",0,0,1,BOSS_TYPE.BOSS_SHOCKWAVE).SetBaseHealth(0.5)
 )

@@ -45,6 +45,21 @@ function scr_base_deal_damage(_id,_dmg){
     
     _id.life -= _dmg
     
+    var _atk = instance_create_depth(_atkx,_atky,_id.depth-1,obj_attack)
+    
+    if type == UNIT_TYPE.DOG{
+        _atk.sprite_index = spr_attack_smoke_dark
+    }
+    else{
+        if global.boss_spawned == false and _id.life == 0{
+            _id.life = 1
+        }
+        
+        if global.enemy_base_life_percent > 0{
+            global.enemy_base_life_percent = _id.life/_id.maxlife
+        }
+    }
+    
     if _id.life<0{
         _id.life = 0
         _id.shake = true
@@ -56,18 +71,7 @@ function scr_base_deal_damage(_id,_dmg){
         _id.alarm[0] = 4
     }
     
-    var _atk = instance_create_depth(_atkx,_atky,_id.depth-1,obj_attack)
-    
-    if type == UNIT_TYPE.DOG{
-        _atk.sprite_index = spr_attack_smoke_dark
-    }
-    else{
-        if global.enemy_base_life_percent > 0{
-            global.enemy_base_life_percent = _id.maxlife/_id.life
-        }
-    }
-    
-    if global.audio
+    if global.audio and !audio_is_playing(snd_attack_base)
         audio_play_sound(snd_attack_base,0,0)
     
     hitanenemy = true
